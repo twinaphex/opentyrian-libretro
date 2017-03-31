@@ -282,6 +282,7 @@ void texture_init(){
 void retro_set_environment(retro_environment_t cb)
 {
    environ_cb = cb;
+   bool no_rom = true;
 
    struct retro_variable variables[] = {
       {
@@ -289,6 +290,8 @@ void retro_set_environment(retro_environment_t cb)
       },
       { NULL, NULL },
    };
+
+   cb(RETRO_ENVIRONMENT_SET_SUPPORT_NO_GAME, &no_rom);
 
    cb(RETRO_ENVIRONMENT_SET_VARIABLES, variables);
 }
@@ -383,11 +386,7 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
 
 bool retro_load_game(const struct retro_game_info *info)
 {    
-	const char *full_path;
-
-    	full_path = info->path;
-
-	strcpy(RPATH,full_path);
+	strcpy(RPATH,retro_system_directory);
 
 	printf("LOAD EMU\n");
 
