@@ -539,13 +539,7 @@ void retro_deinit(void)
 void retro_reset(void)
 {
 }
-/*
-#ifdef __LINUX__
-//unused need for sdl-1.2.15-libretro
-void libretro_setbuffer(void *pix,unsigned short int x,unsigned short int  y){
-}
-#endif
-*/
+
 void retro_run(void)
 {
 	bool updated = false;
